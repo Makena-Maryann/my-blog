@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% import 'macros.html' as macro%}
+
+
+{% block content %}
+<div class="container-fluid">
+   
+  <div class="row poster">
+    <nav>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="/"> Blog it! </a></li>
+          <li><a href="/">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{url_for('main.add_post')}}"
+              >Add Note</a
+            >
+            </li>
+            <li>
+            <a href="{{url_for('main.profile',uname=current_user.username)}}"
+              >Profile</a
+            >
+          </li>
+          <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+          {% else %}
+          <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
+  </div>
+ 
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      {{ macro.displayPosts(posts)}}
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+{% endblock %}
