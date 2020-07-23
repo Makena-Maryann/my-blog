@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container-fluid">
+   
+  <div class="row poster3">
+    <nav>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="/"> Blog it! </a></li>
+          <li><a href="/">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li>
+            <a href="{{url_for('main.add_post')}}"
+              >Add Post</a
+            >
+            </li>
+            <li>
+            <a href="{{url_for('main.profile',uname=current_user.username)}}"
+              >Profile</a
+            >
+          </li>
+          <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+          {% else %}
+          <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+          {%endif%}
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="container">  
+    <div class="row">
+      <div class="col-md-4">
+       <h3> {{user.username| capitalize}} </h3>
+
+      {% if user.bio %}
+        <p> {{user.bio}} </p>
+      {% else %}
+        <p> {{user.username| capitalize}} has no bio </p>
+      {% endif %}  
+   
+   
+        <a href="{{url_for('main.update_profile',uname=user.username)}}" class=" btn btn-primary">Update Profile</a>
+   
+      </div>
+
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+     
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
