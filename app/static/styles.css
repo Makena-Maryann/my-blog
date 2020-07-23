@@ -1,0 +1,56 @@
+body {
+ margin: 0;
+ padding: 0;
+}
+
+h2, h1, h3{
+  font-family: 'Grenze Gotisch', cursive;
+}
+
+.poster {
+ height: 50vh;
+ background-image: url("../static/images/asphalt-dark-dawn-endless-531321.jpg");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ font-family: 'Ranchers', cursive;
+}
+
+.bg-image {
+ height: 100vh;
+ background-image: url("../static/images/lemon-4306496_640.jpg");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+}
+
+.poster2 {
+ height: 50vh;
+ background-image: url("../static/images/santa-31665_640.png");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ font-family: 'Ranchers', cursive;
+}
+
+.poster3 {
+ height: 50vh;
+ background-image: url("../static/images/crescent-4875339_640.jpg");
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size: cover;
+ font-family: 'Ranchers', cursive;
+}
+
+.styler {
+  height: 30vh;
+}
+
+.prof {
+  height: 10vh;
+  width: 10vw;
+}
+
+.diff{
+  color: aqua;
+}
