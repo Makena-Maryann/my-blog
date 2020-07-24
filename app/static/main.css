@@ -43,7 +43,7 @@ h2, h1, h3{
 }
 
 .styler {
-  height: 30vh;
+  margin-top: 120px;
 }
 
 .prof {
@@ -51,6 +51,13 @@ h2, h1, h3{
   width: 10vw;
 }
 
-.diff{
-  color: aqua;
+.diff {
+  color: darkblue;
+}
+
+.space {
+  height: 30px;
+}
+.btn {
+  margin-right: 10px;
 }
