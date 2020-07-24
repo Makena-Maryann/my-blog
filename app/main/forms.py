@@ -3,8 +3,8 @@ from wtforms import StringField,TextAreaField,SubmitField
 from wtforms.validators import Required
 
 class PostForm(FlaskForm):
-    title = StringField('Pitch title',validators=[Required()])
-    post = TextAreaField('Pitch')
+    title = StringField('Post title',validators=[Required()])
+    post = TextAreaField('Post')
     submit = SubmitField('Submit')
 
 class UpdateProfile(FlaskForm):

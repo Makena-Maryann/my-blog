@@ -16,7 +16,7 @@
           {% if current_user.is_authenticated %}
           <li>
             <a href="{{url_for('main.add_post')}}"
-              >Add Note</a
+              >Add Post</a
             >
             </li>
             <li>
@@ -32,13 +32,18 @@
       </div>
     </nav>
   </div>
- 
+  <div class="row space"></div>
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+      <h2 class="diff">Quote</h2>
+      <p>{{ quote.quote }}</p>
+      <p><strong>Author:</strong><span class="diff"> {{quote.author}}</span></p>
+    </div>
+    <div class="col-md-7">
       {{ macro.displayPosts(posts)}}
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
   </div>
 </div>
 
