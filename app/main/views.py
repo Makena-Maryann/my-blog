@@ -1,16 +1,18 @@
-from flask import render_template, request,redirect,url_for,abort
+from flask import render_template, request,redirect,url_for,abort,flash
 from . import main
 from ..models import User,Post,Comment
 from .forms import UpdateProfile,PostForm,CommentForm
 from .. import db
 from flask_login import login_required,current_user
 from datetime import datetime
+from ..request import get_random_quote
 
 @main.route('/')
 def index():
     posts = Post.query.order_by(Post.time.desc()).all()
+    quote = get_random_quote()
 
-    return render_template('index.html', posts = posts)
+    return render_template('index.html', posts = posts,quote=quote)
     
 @main.route('/add',methods = ['GET','POST'])
 @login_required
@@ -27,7 +29,7 @@ def add_post():
          
     return render_template('add.html',post_form=form)
 
-@main.route('/pitch/<int:id>')
+@main.route('/post/<int:id>')
 def post(id):
 
     post = Post.query.filter_by(id=id).first()
@@ -35,7 +37,31 @@ def post(id):
 
     return render_template('post.html',comments = comments, post = post)
 
-@main.route('/pitch/comment/new/<int:id>', methods =  ['GET','POST'])
+@main.route('/post/<int:id>/update',methods = ['GET','POST'])
+@login_required
+def update(id):
+    post = Post.query.filter_by(id=id).first()
+    form = PostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.post = form.post.data
+        db.session.commit()
+        return redirect(url_for('main.post',id=post.id))
+    elif request.method == 'GET':    
+        form.title.data = post.title
+        form.post.data = post.post  
+    return render_template('add.html',post_form=form)
+
+@main.route('/post/<int:id>/delete',methods=['POST'])
+@login_required
+def delete(id):
+    post = Post.query.filter_by(id=id).first()
+    db.session.delete(post)
+    db.session.commit()  
+    flash('Post deleted successfully!','success') 
+    return redirect(url_for('main.index'))      
+
+@main.route('/post/comment/new/<int:id>', methods =  ['GET','POST'])
 @login_required
 def new_comment(id):
     form = CommentForm() 
@@ -48,8 +74,8 @@ def new_comment(id):
         
         return redirect(url_for('.post',id = post.id))
 
-    return render_template('new_comment.html',comment_form=form, post=post)  
-
+    return render_template('new_comment.html',comment_form=form, post=post) 
+     
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
@@ -77,5 +103,7 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/update.html',form=form)
+
+   
 
 

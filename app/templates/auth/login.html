@@ -3,9 +3,9 @@
 
 {% block content %}
 <div class="container-fluid bg-image"> 
-    <div class="row">
-      <div class= "col-md-2"> </div>
-      <div class="col-md-8">
+    <div class="row styler">
+      <div class= "col-md-3"> </div>
+      <div class="col-md-6">
       
       {% for message in get_flashed_messages() %}
         <div class="alert alert-danger">
@@ -16,7 +16,7 @@
       {{wtf.quick_form(login_form)}}
       <p> Don't have an account? <a href="{{url_for('auth.register')}}">Sign up here</a></p>
      </div>
-     <div clas="col-md-2"> </div>
+     <div clas="col-md-3"> </div>
     </div>
 </div>
 
