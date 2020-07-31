@@ -1,1 +1,0 @@
-SECRET_KEY='notso0128?!25**@7$'
