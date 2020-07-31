@@ -4,7 +4,7 @@ class Config:
     '''
     General configuration parent class
     '''
-    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://maryann:Maryann00*@localhost/blog'
+    SQLALCHEMY_DATABASE_URI=os.environ.get('DATABASE_URL')
     SECRET_KEY=os.environ.get('SECRET_KEY')
     
 class ProdConfig(Config):
